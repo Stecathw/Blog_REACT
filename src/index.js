@@ -4,9 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+
+
+const sections = [
+    { title: 'Homepage', url: '/' },
+    { title: 'XC flights', url: '/map' },
+  ];
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header title='Turbulences' sections={sections}/>
+      <App />
+    <Footer title='Have a good Flight !' description='A passionnate free flight pilot blog'/>
   </React.StrictMode>,
   document.getElementById('root')
 );
