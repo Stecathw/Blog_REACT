@@ -6,9 +6,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
-import Loading from './Loading';
-import Post from './Post';
-import Sidebar from './Sidebar';
+import Loading from '../Loading';
+import Post from './main/Post';
+import Sidebar from './main/Sidebar';
 
 const useStyles = makeStyles((theme) => ({
     markdown: {

@@ -2,8 +2,8 @@ import React from "react"
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import Home from './pages/Home'
-import Map from './pages/Map'
+import Home from './views/Home'
+import Map from './views/Map'
 
 const App = () => {
   return (    

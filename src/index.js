@@ -4,14 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Header from './components/Header'
+import Header from './components/Nav'
 import Footer from './components/Footer'
 
 
 
 const sections = [
     { title: 'Homepage', url: '/' },
-    { title: 'XC flights', url: '/map' },
+    { title: 'XC flights Map', url: '/map' },
+    { title: 'Images', url: '' },
+    { title: 'Utiles', url: '' },
   ];
 
 

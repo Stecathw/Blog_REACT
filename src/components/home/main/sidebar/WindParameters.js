@@ -26,7 +26,7 @@ export default function WindParameters(props) {
     }
 
     const calculateIntervall = () => {
-        
+        //To be made
     }
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function WindParameters(props) {
         <div>
             <span>Mis à jour à {data.dateIso}</span>
             <br></br>
-            <span>Prochaine mis à jour à {data.dateIso + 600000}</span>
+            {/* <span>Prochaine mis à jour à {data.dateIso + 600000}</span> */}
             <br></br>
             <span>{data.directVentInst} degrés</span>
             <br></br>

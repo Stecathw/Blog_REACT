@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 
+
+
+
 const useStyles = makeStyles((theme) => ({
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
@@ -21,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1),
       flexShrink: 0,
     },
+    toolbarImage: {
+      display: 'relative',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      maxWidth: '100%',
+    }
   }));
 
 export default function Header(props) {
