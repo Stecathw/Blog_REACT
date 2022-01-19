@@ -10,10 +10,9 @@ Install react-router-dom
 Install react material UI
 
 building header and footer based on free blog template :
-https://v4.mui.com/getting-started/templates/blog/
 https://github.com/mui-org/material-ui/tree/v4.x/docs/src/pages/getting-started/templates/blog
 
-Fecting post from my DRF blog_api.
+Fetching post from my DRF blog_api.
 
 sidebar : API call to FFVL.
 trouble : I want it to update automaticly at some set interval an rerenders, using hooks.
