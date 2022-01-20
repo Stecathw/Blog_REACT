@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Link from '@material-ui/core/Link';
+
 
 export default function Post (props) {
 
@@ -22,8 +24,9 @@ export default function Post (props) {
             </Typography>
             <Divider />
             <div key={post.id}>
-                {post.content}
+                <p>{post.sum_up}</p>
             </div>
+            <Link href={'post/'+post.slug}>Continuer la lecture</Link>
         </Grid>
     )
 }

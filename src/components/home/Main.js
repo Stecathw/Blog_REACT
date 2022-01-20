@@ -52,15 +52,6 @@ export function Posts(props) {
     handleFetchPosts()
   }, [])
 
-
-  if (isError) return (
-    <div>
-        "Something went wrong..."
-        {isError}
-        <Loading/>
-    </div>
-  )
-
   if (posts.length >= 1 && !isLoading) {
       return (
         <React.Fragment>
@@ -75,13 +66,8 @@ export function Posts(props) {
         </Container>
       </React.Fragment>
       )
-  }
-
-  else return (
-    <div>
-        "Loading..."
-        <Loading/>
-    </div>
+  } else return (
+    <><Loading/></>
   )
 }
 

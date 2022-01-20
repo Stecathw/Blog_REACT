@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Header from './components/Nav'
+import Nav from './components/Nav'
 import Footer from './components/Footer'
 
 
@@ -20,7 +20,7 @@ const sections = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header title='Turbulences' sections={sections}/>
+    <Nav title='Turbulences' sections={sections}/>
       <App />
     <Footer title='Have a good Flight !' description='A passionnate free flight pilot blog'/>
   </React.StrictMode>,
