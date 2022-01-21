@@ -32,3 +32,8 @@ Reworked architecture and folders.
 More on fetching datas from django rest api. Created a "detail" view (single post view).
 Added a new route.
 Used useParams to get slug from the url.
+
+#### 21/01/2022:
+
+Implemented react markdown.
+https://www.npmjs.com/package/react-markdown

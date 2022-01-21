@@ -67,7 +67,9 @@ export function Posts(props) {
       </React.Fragment>
       )
   } else return (
-    <><Loading/></>
+    <>
+      <Loading/>
+    </>
   )
 }
 

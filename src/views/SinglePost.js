@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useParams } from "react-router-dom";
 
 import Loading from '../components/Loading';
+import PostDetail from '../components/singlepost/PostDetail';
 
 
 export default function SinglePost () {
@@ -54,10 +55,8 @@ export default function SinglePost () {
             <>Error 404</>
         )
     } else return (
-            <div>
-                <h2>{post.title}</h2>
-                <h6>{post.published}</h6>
-                <p>{post.content}</p>
-            </div>
+            <>
+                <PostDetail post={post}/>
+            </>
     )
 }
