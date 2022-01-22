@@ -37,3 +37,11 @@ Used useParams to get slug from the url.
 
 Implemented react markdown.
 https://www.npmjs.com/package/react-markdown
+
+Implemented react-google-map
+https://react-google-maps-api-docs.netlify.app/#section-getting-started
+
+console.cloud.google.com/google/maps-apis/
+Stored API key in a .env for dev purposes only.
+
+Polyline path needs to be [{lat: 37.772, lng: -122.214}, {lat: 21.291, lng: -157.821}]
