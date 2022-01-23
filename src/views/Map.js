@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+
+import React from 'react'
+import { GoogleMap, LoadScript } from '@react-google-maps/api'
+
 import { Polyline } from '@react-google-maps/api';
-import track from '../data/WSC-02082019-test';
+import track from '../data/05-09-2021.json';
+
 
 
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -16,67 +19,38 @@ const center = {
   lng: 1.5817895252307566
 };
 
+const optionsPolyline= {
+  strokeColor: '#FF0000',
+  strokeOpacity: 0.8,
+  strokeWeight: 2,
+  fillColor: '#FF0000',
+  fillOpacity: 0.35,
+  clickable: false,
+  draggable: false,
+  editable: false,
+  visible: true,
+  radius: 30000,
+  zIndex: 1
+};
 
-const flight_path = track
+const path = track
 
-export default class Map extends Component {
-  render() {
-    return (
-      <LoadScript
-        googleMapsApiKey={API_KEY}
+export default function Map() {
+  return (
+    <LoadScript
+      googleMapsApiKey={API_KEY}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={9}
       >
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
-        >
-          { /* Child components, such as markers, info windows, etc. */ }
-          <Polyline path={flight_path}/>
-        </GoogleMap>
-      </LoadScript>
-    )
-  }
+
+        <Polyline
+          path={path}
+          options={optionsPolyline}
+        />
+      </GoogleMap>
+    </LoadScript>
+  )
 }
-
-// import React from 'react'
-// import { GoogleMap, useLoadScript } from '@react-google-maps/api'
-// import Loading from '../components/Loading'
-
-// const options = {
-// //   zoomControlOptions: {
-// //     position: google.maps.ControlPosition.RIGHT_CENTER // ,
-// //     // ...otherOptions
-// //   }
-// }
-
-// export default function Map() {
-//   const { isLoaded, loadError } = useLoadScript({
-//     googleMapsApiKey: 'AIzaSyARfZBq244Ftxd4Q6mU9mWXQCalxBbI7Bs'
-//     // ...otherOptions
-//   })
-
-//   const renderMap = () => {
-//     // wrapping to a function is useful in case you want to access `window.google`
-//     // to eg. setup options or create latLng object, it won't be available otherwise
-//     // feel free to render directly if you don't need that
-//     // const onLoad = React.useCallback(
-//     //   function onLoad (mapInstance) {
-//     //     // do something with map Instance
-//     //   }
-//     // )
-//     return <GoogleMap
-//       options={options}
-//     //   onLoad={onLoad}
-//     >
-//       {
-//         // ...Your map components
-//       }
-//     </GoogleMap>
-//   }
-
-//   if (loadError) {
-//     return <div>Map cannot be loaded right now, sorry.</div>
-//   }
-
-//   return isLoaded ? renderMap() : <Loading />
-// }

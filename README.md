@@ -45,3 +45,8 @@ console.cloud.google.com/google/maps-apis/
 Stored API key in a .env for dev purposes only.
 
 Polyline path needs to be [{lat: 37.772, lng: -122.214}, {lat: 21.291, lng: -157.821}]
+
+#### 23/01/2022:
+
+Implemented polyline from a Json file.
+Json file are created from an existing flight URL with a python scripts.
