@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import WindParameters from './sidebar/WindParameters';
+import WindParameters from './WindParameters';
+import LocationMenu from './LocationMenu';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,15 +29,9 @@ export default function Sidebar(props) {
           {title}
         </Typography>
         <Typography>{description}</Typography>
+        <LocationMenu />
         <WindParameters location= {{id: 83, place: 'Douelle'}}/>
       </Paper>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Archives
-      </Typography>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Social
-      </Typography>
-
     </Grid>
   );
 }

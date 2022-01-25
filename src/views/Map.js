@@ -45,7 +45,6 @@ export default function Map() {
         center={center}
         zoom={9}
       >
-
         <Polyline
           path={path}
           options={optionsPolyline}

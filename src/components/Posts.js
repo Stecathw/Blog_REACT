@@ -6,9 +6,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
-import Loading from '../Loading';
-import Post from './main/Post';
-import Sidebar from './main/Sidebar';
+import Loading from './Loading';
+import Post from './Post';
+
 
 const useStyles = makeStyles((theme) => ({
     markdown: {
@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export function Posts(props) {
+
+export default function Posts(props) {
     const classes = useStyles()
 
   const [posts, setPosts] = useState([])
@@ -54,21 +55,13 @@ export function Posts(props) {
 
   if (posts.length >= 1 && !isLoading) {
       return (
-        <React.Fragment>
-        <CssBaseline />
-        <Container maxWidth="lg">
-          <main>
-            <Grid container spacing={8} >
-              {posts}   
-              <Sidebar title='Météo en Temps réel'/>           
-            </Grid>
-          </main>
-        </Container>
-      </React.Fragment>
+        <>
+          {posts}                           
+        </>
       )
   } else return (
     <>
-      <Loading/>
+      <Loading/>                         
     </>
   )
 }

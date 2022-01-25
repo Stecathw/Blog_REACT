@@ -1,15 +1,13 @@
 import React from 'react';
 
-import Cover from '../components/home/Cover';
-import { Posts } from '../components/home/Main';
-
-
+import Cover from '../components/Cover';
+import { MainGrid } from '../components/MainGrid';
 
 export default function Home() {
     return (
         <>     
-            <Cover/>     
-            <Posts/>                     
+            <Cover/>
+            <MainGrid/>
         </>
     )
 }

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useParams } from "react-router-dom";
 
 import Loading from '../components/Loading';
-import PostDetail from '../components/singlepost/PostDetail';
+import PostDetail from '../components/PostDetail';
 
 
 export default function SinglePost () {
@@ -56,7 +56,8 @@ export default function SinglePost () {
         )
     } else return (
             <>
-                <PostDetail post={post}/>
+                <PostDetail post={post} />
+
             </>
     )
 }
