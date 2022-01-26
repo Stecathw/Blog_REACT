@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 
@@ -6,8 +5,7 @@ import { Polyline } from '@react-google-maps/api';
 import track from '../data/05-09-2021.json';
 
 
-
-const API_KEY = process.env.REACT_APP_API_KEY
+const API_KEY = process.env.REACT_APP_BALISE_API_KEY
 
 const containerStyle = {
   width: '90%',

@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 
 export default function WindParameters(props) {
 
-    const { location } = props;
+    const { locationID } = props;    
 
-    const [data, setData] = useState([])
+    WindParameters.propTypes = {
+        windData: PropTypes.number
+    }
+    const [windData, setWindData] = useState([])
 
-
-    const handleFetchWindData = () => {
-        const url = 'https://balisemeteo.com/balise_json.php?idBalise='+location.id
+    const handleFetchWindData = (location) => {
+        const url = 'https://balisemeteo.com/balise_json.php?idBalise='+location
         fetch(url)
         .then(response => {
             if (response.ok) {
@@ -18,44 +20,38 @@ export default function WindParameters(props) {
             throw response;
         })
         .then(data => {
-            setData(data)
+            setWindData(data)
         })
         .catch(error => {
             console.log("Error fetching data :", error);
         })
-    }
-
-    const calculateIntervall = () => {
-        //To be made
-    }
+      }
 
     useEffect(() => {
-        handleFetchWindData()
+        handleFetchWindData(locationID)
         const interval = setInterval(() => {
-            handleFetchWindData()
+            handleFetchWindData(locationID)
         }, 600000)
         return () => clearInterval(interval)
-    })
+    }, [locationID])
 
     return (
         <div>
-            <span>Mis à jour à {data.dateIso}</span>
+            <span>Mis à jour à {windData.dateIso}</span>
             <br></br>
             {/* <span>Prochaine mis à jour à {data.dateIso + 600000}</span> */}
             <br></br>
-            <span>{data.directVentInst} degrés</span>
+            <span>{windData.directVentInst} degrés</span>
             <br></br>
-            <span>{data.directVentMoy} degrés</span>
+            <span>{windData.directVentMoy} degrés</span>
             <br></br>
-            <span>{data.vitesseVentMin} km/h</span>
+            <span>{windData.vitesseVentMin} km/h</span>
             <br></br>
-            <span>{data.vitesseVentMoy} km/h</span>
+            <span>{windData.vitesseVentMoy} km/h</span>
             <br></br>
-            <span>{data.vitesseVentMax} km/h</span>                          
+            <span>{windData.vitesseVentMax} km/h</span>                          
         </div>
     )
 }
 
-WindParameters.propTypes = {
-    location: PropTypes.object,
-}
+

@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import WindParameters from './WindParameters';
-import LocationMenu from './LocationMenu';
 
+import Balise from './Balise';
 
 const useStyles = makeStyles((theme) => ({
   sidebarAboutBox: {
@@ -19,8 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sidebar(props) {
+
   const classes = useStyles();
   const { description, title } = props;
+
+  
 
   return (
     <Grid item xs={12} md={4}>
@@ -29,8 +31,7 @@ export default function Sidebar(props) {
           {title}
         </Typography>
         <Typography>{description}</Typography>
-        <LocationMenu />
-        <WindParameters location= {{id: 83, place: 'Douelle'}}/>
+        <Balise/>
       </Paper>
     </Grid>
   );
