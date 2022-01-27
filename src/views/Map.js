@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 
 import { Polyline } from '@react-google-maps/api';
-import track from '../data/05-09-2021.json';
-
+// import track from '../data/05-09-2021.json';
 
 const API_KEY = process.env.REACT_APP_BALISE_API_KEY
 
@@ -31,22 +30,76 @@ const optionsPolyline= {
   zIndex: 1
 };
 
-const path = track
+// const path = track
 
 export default function Map() {
+
+  const [Tracks, setTracks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleFetchTracks = () => {
+    fetch('http://127.0.0.1:8000/api/tracks')
+    .then(response => {
+        if (response.ok) {
+          console.log(response)
+          return response.json()
+        }
+        throw response;
+    })
+    .then(data => {
+      console.log(data)
+      const tracksData = data.map((item, _index) => {
+        // listOfTracks.push(item.track_json)
+        return item.track_json
+      })
+      console.log(tracksData)
+      const Polylines = tracksData.map((track, _position) => {
+        return <Polyline 
+                  path={track}
+                  options={optionsPolyline} 
+                  key={_position.toString()} 
+                  />
+                  
+      })
+      console.log(Polylines)
+      setTracks(Polylines)
+    })
+    .catch(error => {
+        console.log("Error fetching data :", error);
+    })
+    .finally(() => {
+        setIsLoading(false)
+    })
+  }
+
+  useEffect(() => {
+    setIsLoading(true)
+    handleFetchTracks()
+  }, [])
+
   return (
+
     <LoadScript
       googleMapsApiKey={API_KEY}
     >
+
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={9}
       >
-        <Polyline
-          path={path}
-          options={optionsPolyline}
-        />
+        {Tracks.map((track, _index) => {
+          return track
+        })}
+        {/* {
+          Tracks.map((track, _index) => {
+            return <Polyline
+              path={track}
+              options={optionsPolyline}
+              key={_index} 
+            />
+          })
+        }  */}
       </GoogleMap>
     </LoadScript>
   )

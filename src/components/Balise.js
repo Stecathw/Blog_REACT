@@ -14,7 +14,7 @@ export default function Balise() {
 
   const allLocationsList = BaliseLocations
 
-  const [currentLocation, setCurrentLocation] = useState(allLocationsList[0])
+  const [currentLocation, setCurrentLocation] = useState(allLocationsList[1])
 
   const handleChange = (event) => {
     event.preventDefault()

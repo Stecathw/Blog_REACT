@@ -15,10 +15,10 @@ export function MainGrid(props) {
             <CssBaseline />
             <Container maxWidth="lg">
                 <main>
-                <Grid container spacing={8} >
-                    <Posts/> 
-                    <Sidebar title='Météo en Temps réel'/>                         
-                </Grid>                
+                <Grid container spacing={2} columns={12}>
+                    <Posts/>  
+                    <Sidebar title='Météo en Temps réel'/>                                              
+                </Grid>                              
                 </main>
             </Container>            
         </React.Fragment>

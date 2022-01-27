@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Link from '@material-ui/core/Link';
 
+const useStyles = makeStyles((theme) => ({
+    postBox: {
+      padding: theme.spacing(2),
+      marginBottom: theme.spacing(5)
+    },
+  }))
 
 export default function Post (props) {
 
@@ -14,8 +21,10 @@ export default function Post (props) {
     Post.propTypes = {
         post: PropTypes.object
     }  
+    const classes = useStyles()
+
     return (
-        <Grid item xs={12} md={8}>
+        <Grid item xs={10} className={classes.postBox}>
             <Typography variant="h6">
                 {post.title}
             </Typography>
