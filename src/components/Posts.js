@@ -31,7 +31,7 @@ export default function Posts(props) {
         throw response;
     })
     .then(data => {
-        const postsData = data.map((item, _index) => {
+        const postsData = data.map((item, _index) => {            
             return <Post className={classes.markdown} post={item} key={item.id.toString()} />
         })
         setPosts(postsData)

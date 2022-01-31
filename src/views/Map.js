@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 
-import { Polyline } from '@react-google-maps/api';
-// import track from '../data/05-09-2021.json';
+import { Polyline, InfoWindow } from '@react-google-maps/api';
+
+
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@mui/material/Container';
+
+const useStyles = makeStyles((theme) => ({
+    mapContainer: {
+      marginTop: theme.spacing(5),
+    },
+  }))
 
 const API_KEY = process.env.REACT_APP_BALISE_API_KEY
 
 const containerStyle = {
-  width: '90%',
-  height: '800px'
+  width: 'auto',
+  height: '800px',
+  paddingTop: '15px',
 };
 
 const center = {
@@ -30,38 +40,40 @@ const optionsPolyline= {
   zIndex: 1
 };
 
-// const path = track
 
 export default function Map() {
 
   const [Tracks, setTracks] = useState([])
+  const [FlightInfos, setFlightInfos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+
+  const [PolylineOptions, setPolylineOptions] = useState(optionsPolyline)
+  const classes = useStyles()
+
 
   const handleFetchTracks = () => {
     fetch('http://127.0.0.1:8000/api/tracks')
     .then(response => {
         if (response.ok) {
-          console.log(response)
           return response.json()
         }
         throw response;
     })
     .then(data => {
-      console.log(data)
-      const tracksData = data.map((item, _index) => {
-        // listOfTracks.push(item.track_json)
+
+      const tracksData = data.map((item, _index) => {  
+        
         return item.track_json
       })
-      console.log(tracksData)
       const Polylines = tracksData.map((track, _position) => {
-        return <Polyline 
-                  path={track}
-                  options={optionsPolyline} 
-                  key={_position.toString()} 
-                  />
-                  
+        return (<Polyline 
+                    path={track}
+                    options={PolylineOptions} 
+                    key={_position.toString()}
+                    editable={true}
+                  >
+                  </Polyline>)             
       })
-      console.log(Polylines)
       setTracks(Polylines)
     })
     .catch(error => {
@@ -78,29 +90,19 @@ export default function Map() {
   }, [])
 
   return (
+    <Container fixed className={classes.mapContainer}>
+      <LoadScript
+          googleMapsApiKey={API_KEY}
+        >
 
-    <LoadScript
-      googleMapsApiKey={API_KEY}
-    >
-
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={9}
-      >
-        {Tracks.map((track, _index) => {
-          return track
-        })}
-        {/* {
-          Tracks.map((track, _index) => {
-            return <Polyline
-              path={track}
-              options={optionsPolyline}
-              key={_index} 
-            />
-          })
-        }  */}
-      </GoogleMap>
-    </LoadScript>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={9}
+          > 
+            {Tracks}
+        </GoogleMap> 
+      </LoadScript>
+    </Container>
   )
 }

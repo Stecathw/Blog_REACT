@@ -50,3 +50,9 @@ Polyline path needs to be [{lat: 37.772, lng: -122.214}, {lat: 21.291, lng: -157
 
 Implemented polyline from a Json file.
 Json file are created from an existing flight URL with a python scripts.
+
+#### 31/01/2022:
+
+Begun to build gallery display.
+
+## NEEDS MANY IMPROVMENTS

@@ -21,7 +21,7 @@ export default function SinglePost () {
     }
 
     const handleFetchPostDetails = () => {
-        fetch('http://127.0.0.1:8000/api/'+slug)
+        fetch('http://127.0.0.1:8000/api/posts/'+slug)
         .then(response => {
             if (response.ok) {
                 return response.json()

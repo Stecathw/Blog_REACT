@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
 import reportWebVitals from './reportWebVitals';
 
 import Nav from './components/Nav'
@@ -12,7 +13,7 @@ import Footer from './components/Footer'
 const sections = [
     { title: 'Homepage', url: '/' },
     { title: 'XC flights Map', url: '/map' },
-    { title: 'Images', url: '' },
+    { title: 'Gallery', url: '/gallery' },
     { title: 'Utiles', url: '' },
   ];
 

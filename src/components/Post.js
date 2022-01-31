@@ -28,9 +28,19 @@ export default function Post (props) {
             <Typography variant="h6">
                 {post.title}
             </Typography>
-            <Typography variant='subtitle1' gutterBottom>
-                {post.published}
-            </Typography>
+            
+                <Grid container spacing={2}>
+                    <Grid item xs={8}>
+                        <Typography variant='subtitle1' gutterBottom>
+                        {post.published}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}  style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-end", paddingRight: "10px"}}>
+                        {post.category}
+                    </Grid>
+                </Grid>           
+
+            
             <Divider />
             <div key={post.id}>
                 <p>{post.sum_up}</p>
