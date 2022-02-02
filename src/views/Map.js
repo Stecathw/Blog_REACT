@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
-
-import { Polyline, InfoWindow } from '@react-google-maps/api';
 
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@mui/material/Container';
+import Flighttrack from '../components/Flighttrack';
 
 const useStyles = makeStyles((theme) => ({
     mapContainer: {
@@ -26,29 +25,13 @@ const center = {
   lng: 1.5817895252307566
 };
 
-const optionsPolyline= {
-  strokeColor: '#FF0000',
-  strokeOpacity: 0.8,
-  strokeWeight: 2,
-  fillColor: '#FF0000',
-  fillOpacity: 0.35,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  visible: true,
-  radius: 30000,
-  zIndex: 1
-};
-
-
 export default function Map() {
 
-  const [Tracks, setTracks] = useState([])
   const [FlightInfos, setFlightInfos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  const [PolylineOptions, setPolylineOptions] = useState(optionsPolyline)
   const classes = useStyles()
+
 
 
   const handleFetchTracks = () => {
@@ -61,20 +44,13 @@ export default function Map() {
     })
     .then(data => {
 
-      const tracksData = data.map((item, _index) => {  
-        
-        return item.track_json
-      })
-      const Polylines = tracksData.map((track, _position) => {
-        return (<Polyline 
-                    path={track}
-                    options={PolylineOptions} 
-                    key={_position.toString()}
-                    editable={true}
-                  >
-                  </Polyline>)             
-      })
-      setTracks(Polylines)
+      setFlightInfos(data.map((item, _index) => {       
+        return item}))
+
+      // const tracksData = data.map((item, _index) => {       
+      //   return item.track_json
+      // })
+      // setTracks(tracksData)
     })
     .catch(error => {
         console.log("Error fetching data :", error);
@@ -89,18 +65,32 @@ export default function Map() {
     handleFetchTracks()
   }, [])
 
+  const onlyInfos = useCallback((flight) => {
+    delete flight.track_json
+    console.log(flight)
+    return flight
+  }, [])
+
   return (
     <Container fixed className={classes.mapContainer}>
       <LoadScript
           googleMapsApiKey={API_KEY}
         >
-
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
             zoom={9}
           > 
-            {Tracks}
+          {
+            FlightInfos.map((flight, _index) => {
+              return (
+                <Flighttrack  
+                  flightinfos={flight} 
+                  key={_index.toString()}
+                />
+              )
+            })
+          } 
         </GoogleMap> 
       </LoadScript>
     </Container>

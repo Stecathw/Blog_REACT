@@ -55,4 +55,11 @@ Json file are created from an existing flight URL with a python scripts.
 
 Begun to build gallery display.
 
-## NEEDS MANY IMPROVMENTS
+#### 02/02/2020
+
+Reworked on map displaying polylines.
+Used https://github.com/JustFly1984/react-google-maps-api/tree/master/packages/react-google-maps-api-gatsby-example/src/examples
+to understand more how google-react map works
+
+icons : https://icons8.com/icons/set/paragliding
+
