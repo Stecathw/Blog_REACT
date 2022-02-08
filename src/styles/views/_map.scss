@@ -1,0 +1,20 @@
+.mainPanel {
+    border: 2px solid black;
+    background-color: grey;
+    margin-top : 4rem;
+    margin-bottom : 4rem;
+    .leftPanel, .rightPanel {
+        border: 1px solid black;
+        background-color: yellow;
+        align-self: stretch;
+        .panelInfo {
+
+            text-align: center;
+            border: 2px solid black;
+            background-color: blue;
+        }
+    }
+    .middleContainer {
+        border: 5px solid red;
+    }    
+}

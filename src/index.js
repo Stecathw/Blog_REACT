@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 import App from './App';
+import store from './app/store'
+import { Provider } from 'react-redux'
 
 import reportWebVitals from './reportWebVitals';
 
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 
-
+import './styles/styles.scss';
 
 const sections = [
     { title: 'Homepage', url: '/' },
@@ -21,9 +23,11 @@ const sections = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <Nav title='Turbulences' sections={sections}/>
-      <App />
-    <Footer title='Have a good Flight !' description='A passionnate free flight pilot blog'/>
+    <Provider store={store}>
+      <Nav title='Turbulences' sections={sections}/>
+        <App />
+      <Footer title='Have a good Flight !' description='A passionnate free flight pilot blog'/>
+    </Provider>,
   </React.StrictMode>,
   document.getElementById('root')
 );

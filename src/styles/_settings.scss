@@ -1,0 +1,12 @@
+@mixin CenterVertical {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    color: black;
+    min-height: 100%;
+    margin-left: 50px;
+    margin-right: 50px;
+}

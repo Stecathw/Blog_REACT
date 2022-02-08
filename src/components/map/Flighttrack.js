@@ -1,7 +1,10 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
-import { Polyline, Marker } from '@react-google-maps/api'
+import { Polyline, Marker } from '@react-google-maps/api';
 
+import { useDispatch } from 'react-redux';
+import { FlightAdded, FlightRemoved } from './FlightInfosSlice';
 
 const POLYLINE_OPTIONS = {
     strokeColor: '#FF0000',
@@ -12,7 +15,7 @@ const POLYLINE_OPTIONS = {
 const POLYLINE_OPTIONS_ON_MOUSE_OVER = {
     strokeColor: '#FFF000',
     strokeOpacity: 1.0,
-    strokeWeight: 4,
+    strokeWeight: 5,
 }
 
 
@@ -24,24 +27,33 @@ export default function Flighttrack( props ) {
 
     const [markerVisible, setMarkerVisible] = useState(false)
 
+    const dispatch = useDispatch()
+
+
     const po = useMemo(() => {
         try {
             return JSON.parse(polylineOptions)
         } catch (e) {
             return POLYLINE_OPTIONS
         }
-    }, [polylineOptions])    
-
+    }, [polylineOptions]) 
+    
     const handleOnMouseOver = useCallback(() => {
         setPolylineOptions(JSON.stringify(POLYLINE_OPTIONS_ON_MOUSE_OVER))
         setMarkerVisible(true)
-        console.log(flightinfos)
+        dispatch(FlightAdded(flightinfos))
     }, [])
 
     const handleOnMouseOut = useCallback(() => {
         setPolylineOptions(JSON.stringify(POLYLINE_OPTIONS))
         setMarkerVisible(false)
+        dispatch(FlightRemoved(flightinfos))
     }, [])
+
+    // const handleOnClick = useCallback(() => {
+    //     dispatch(FlightAdded(flightinfos))
+    // }, [])
+
 
     return (
         <div>
@@ -51,9 +63,9 @@ export default function Flighttrack( props ) {
                 options={po}
                 onMouseOver={handleOnMouseOver}
                 onMouseOut={handleOnMouseOut}
+                // onClick={handleOnClick}
             />
             <Marker
-                icon={'https://img.icons8.com/ultraviolet/40/000000/paragliding.png'}
                 title={"Décollage"}
                 visible={markerVisible}
                 position={flightinfos.track_json.at(0)}
@@ -65,4 +77,8 @@ export default function Flighttrack( props ) {
             />
         </div>
     )    
+}
+
+Flighttrack.propTypes = {
+    flightinfos: PropTypes.object.isRequired,
 }

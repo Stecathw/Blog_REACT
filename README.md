@@ -55,7 +55,7 @@ Json file are created from an existing flight URL with a python scripts.
 
 Begun to build gallery display.
 
-#### 02/02/2020
+#### 02/02/2022
 
 Reworked on map displaying polylines.
 Used https://github.com/JustFly1984/react-google-maps-api/tree/master/packages/react-google-maps-api-gatsby-example/src/examples
@@ -63,3 +63,18 @@ to understand more how google-react map works
 
 icons : https://icons8.com/icons/set/paragliding
 
+#### 03/02/2022
+
+Implemented redux to manage state and data on Map page essentially, found that it is
+easier when managing data and for future needs when scaling up.
+https://react-redux.js.org/introduction/getting-started
+
+#### 06/02/2022
+
+Created reducer and according actions to dispatch state between components on map page. Needs to scale up flight infos model date on server side now !
+
+#### 07/02/2022
+
+Added sass to make own styles.
+
+####
